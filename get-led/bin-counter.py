@@ -25,6 +25,7 @@ while True:
     delta += GPIO.input(up)
     delta -= GPIO.input(down)
     num += delta
+    num = (num + 256) % 256
     if delta:
         print(num, dec2bin(num))
         time.sleep(sleep_time)
