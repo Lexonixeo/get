@@ -1,0 +1,19 @@
+import r2r_adc as r2r
+import adc_plot as plott
+import time
+
+adc = r2r.R2R_ADC(3.183, compare_time=0.0001)
+voltages = []
+times = []
+duration = 3.0
+
+try:
+    time_start = time.time()
+    while time.time() - time_start < duration:
+        v = adc.get_sc_voltage()
+        t = time.time()
+        times += [t]
+        voltages += [v]
+    plott.plot_voltage_vs_time()
+finally:
+    adc.deinit()
