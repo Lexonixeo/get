@@ -2,7 +2,9 @@ import r2r_adc as r2r
 import adc_plot as plott
 import time
 
-adc = r2r.R2R_ADC(3.183, compare_time=0.0001)
+max_voltage = 3.183
+
+adc = r2r.R2R_ADC(max_voltage, compare_time=0.0001)
 voltages = []
 times = []
 duration = 3.0
@@ -14,6 +16,7 @@ try:
         t = time.time()
         times += [t]
         voltages += [v]
-    plott.plot_voltage_vs_time()
+    plott.plot_voltage_vs_time(times, voltages, max_voltage)
+    plott.plot_sampling_period_hist(times)
 finally:
     adc.deinit()
