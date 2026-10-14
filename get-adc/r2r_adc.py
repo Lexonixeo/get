@@ -39,14 +39,32 @@ class R2R_ADC:
         int_volt = self.sequential_counting_adc()
         return int_volt * self.dynamic_range / 255
 
+    def successive_approximation_adc(self):
+        l = 0
+        r = 256
+        while (r - l > 1):
+            m = (l + r) / 2
+            GPIO.output(self.gpio_bits, dec2bin(m))
+            time.sleep(self.compare_time)
+            if (GPIO.input(self.comp_gpio)):
+                l = m
+            else:
+                r = m
+        return l
+    
+    def get_sar_voltage(self):
+        int_volt = self.successive_approximation_adc()
+        return int_volt * self.dynamic_range / 255
+
 
 if __name__ == "__main__":
     try:
         adc = R2R_ADC(3.183, True) # другой dynamic_range!!!
 
         while True:
-            volt = adc.get_sc_voltage()
-            print(volt)
+            voltsc = adc.get_sc_voltage()
+            voltsar = adc.get_sar_voltage()
+            print(voltsc, voltsar)
         
     finally:
         adc.deinit()
