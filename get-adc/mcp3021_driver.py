@@ -31,10 +31,10 @@ class MCP3021:
 
 if __name__ == "__main__":
     try:
-        adc = MCP3021(4.221, True) # другой dynamic_range!!!
+        adc = MCP3021(5.227, True) # другой dynamic_range!!!
 
         while True:
-            voltmcp = adc.get_sar_voltage()
+            voltmcp = adc.get_voltage()
             print(voltmcp)
             time.sleep(1)
         

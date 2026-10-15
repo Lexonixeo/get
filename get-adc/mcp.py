@@ -2,12 +2,12 @@ import mcp3021_driver as mcp
 import adc_plot as plott
 import time
 
-max_voltage = 4.221
+max_voltage = 5.227
 
 adc = mcp.MCP3021(max_voltage)
 voltages = []
 times = []
-duration = 3.0
+duration = 15.0
 
 try:
     time_start = time.time()
