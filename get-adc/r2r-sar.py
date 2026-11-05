@@ -1,3 +1,6 @@
+import sys
+sys.stdout = open("result.txt", 'w')
+
 import r2r_adc as r2r
 import adc_plot as plott
 import time
@@ -9,11 +12,13 @@ voltages = []
 times = []
 duration = 3.0
 
+print("v t")
 try:
     time_start = time.time()
     while time.time() - time_start < duration:
         v = adc.get_sar_voltage()
         t = time.time()
+        print(v, t)
         times += [t]
         voltages += [v]
     plott.plot_voltage_vs_time(times, voltages, max_voltage)

@@ -7,7 +7,7 @@ max_voltage = 3.183
 adc = r2r.R2R_ADC(max_voltage, compare_time=0.0001)
 voltages = []
 times = []
-duration = 3.0
+duration = 30.0
 
 try:
     time_start = time.time()
