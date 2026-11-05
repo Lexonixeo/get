@@ -1,5 +1,5 @@
 import sys
-sys.stdout = open("result.txt", 'w')
+sys.stdout = open("result_button.txt", 'w')
 
 import mcp3021_driver as mcp
 import adc_plot as plott
@@ -10,7 +10,7 @@ max_voltage = 5.227
 adc = mcp.MCP3021(max_voltage)
 voltages = []
 times = []
-duration = 60.0
+duration = 10.0
 
 print("v t")
 try:
